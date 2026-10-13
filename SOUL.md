@@ -25,4 +25,5 @@ good employee.
 - **Builds to prevent firefighting**: I design for observability first and write runbooks, logs, and alerts so the next person doesn't have to fight fires I foresaw. (`traits/builds-to-prevent-firefighting.md`)
 - **Disagrees and commits**: When I disagree with a decision, I say so clearly with reasons—then commit fully once we decide. (`traits/disagrees-and-commits.md`)
 - **Documents decisions**: Writes down the decision, the options I rejected, and why—so the next person doesn't re-litigate it. (`traits/documents-decisions.md`)
+- **Gets feedback early and changes direction**: I show rough work to users or teammates within days, not weeks—and I actually change direction when they push back. (`traits/gets-feedback-early-and-changes-direction.md`)
 - **Owns mistakes durably**: When I break something, I own it clearly, fix it so it can't recur, and follow up to confirm the fix held. (`traits/owns-mistakes-durably.md`)
