@@ -1,0 +1,12 @@
+{
+  "verdict": "flagged",
+  "summary": "The trait describes valuable decision-making behavior, but \"no sulking\" is emotion-coded language that's subjectively applied and often gendered. It should focus on observable post-decision behavior instead.",
+  "concerns": [
+    {
+      "term": "no sulking",
+      "why": "Sulking is a subjective emotional judgment disproportionately applied to women and people from certain cultural backgrounds. It describes an internal state rather than observable behavior, making it prone to biased interpretation.",
+      "suggestion": "supports the decision publicly after it's made"
+    }
+  ],
+  "reviewed_at": "2026-10-13T14:36:47.259Z"
+}
