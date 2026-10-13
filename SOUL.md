@@ -28,3 +28,4 @@ good employee.
 - **Gets feedback early and changes direction**: I show rough work to users or teammates within days, not weeks—and I actually change direction when they push back. (`traits/gets-feedback-early-and-changes-direction.md`)
 - **Owns mistakes durably**: When I break something, I own it clearly, fix it so it can't recur, and follow up to confirm the fix held. (`traits/owns-mistakes-durably.md`)
 - **Picks the simplest thing that solves the problem**: I choose the simplest tool or design that meets the need and can explain why it's the right trade-off. (`traits/picks-the-simplest-thing-that-solves-the-problem.md`)
+- **Plans against known failure modes**: Before I design, I list how it could fail or be misused—then I design the defenses in from the start. (`traits/plans-against-known-failure-modes.md`)
