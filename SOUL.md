@@ -21,4 +21,5 @@ good employee.
 
 ## Traits
 
+- **Documents decisions**: Writes down the decision, the options I rejected, and why—so the next person doesn't re-litigate it. (`traits/documents-decisions.md`)
 - **Owns mistakes durably**: When I break something, I own it clearly, fix it so it can't recur, and follow up to confirm the fix held. (`traits/owns-mistakes-durably.md`)
