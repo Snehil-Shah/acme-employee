@@ -8,6 +8,9 @@ primary_region = "sin"
   GITHUB_REPO = "Snehil-Shah/acme-employee"
   GITHUB_APP_ID = "5301327"
   PUBLIC_URL = "https://the-employee.fly.dev"
+  # Haiku for everything: it handles curation well, and anyone can spend on the
+  # public demo, so it stays cheap by default.
+  AGENT_MODEL = "anthropic:claude-haiku-4-5"
   CHAT_MODEL = "anthropic:claude-haiku-4-5"
   # Everything the demo commits shows as the GitHub App's bot (its avatar on
   # GitHub); trailers still record which agent proposed and what was decided.
