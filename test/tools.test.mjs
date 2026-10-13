@@ -5,7 +5,7 @@
 // grows through one proposal.
 import { test, before } from "node:test";
 import assert from "node:assert/strict";
-import { execFileSync, spawnSync } from "node:child_process";
+import { execFileSync, spawnSync, spawn } from "node:child_process";
 import { cpSync, mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
@@ -210,11 +210,40 @@ test("guards allow only each agent's own tools", () => {
 	assert.equal(guard("agents/fairness", "propose_change"), "block");
 });
 
+test("agents may read their own skills and nothing else", () => {
+	const read = (path) => {
+		const cwd = join(repo, "agents", "fairness");
+		const r = spawnSync("sh", [join(cwd, "hooks", "guard.sh")], { cwd, input: JSON.stringify({ tool: "read", args: { path } }), encoding: "utf-8" });
+		return JSON.parse(r.stdout);
+	};
+	assert.equal(read("skills/proxy-detection/SKILL.md").action, "allow");
+	// A path missing its skills/ prefix is pointed inside skills/, not refused.
+	assert.deepEqual(read("proxy-detection/SKILL.md"), { action: "modify", args: { path: "skills/proxy-detection/SKILL.md" } });
+	assert.equal(read("../../RULES.md").action, "block");
+	assert.equal(read("/etc/passwd").action, "block");
+	assert.equal(read(undefined).action, "block");
+});
+
 test("the guard fails closed on input it can't read", () => {
 	const cwd = join(repo, "agents", "curator");
 	const r = spawnSync("sh", [join(cwd, "hooks", "guard.sh")], { cwd, input: "not json", encoding: "utf-8" });
 	assert.equal(r.status, 0);
 	assert.equal(JSON.parse(r.stdout).action, "block");
+});
+
+test("parallel proposals for one source don't race", async () => {
+	const cwd = join(repo, "agents", "curator");
+	const run = (title) =>
+		new Promise((done) => {
+			const child = spawn("node", [join(cwd, "tools", "propose_change.mjs")], { cwd });
+			let err = "";
+			child.stderr.on("data", (d) => (err += d));
+			child.on("close", (code) => done({ code, err }));
+			child.stdin.end(JSON.stringify({ ...writesThingsDown, source_id: "exit-test-parallel", title }));
+		});
+	const results = await Promise.all([run("Parallel one"), run("Parallel two")]);
+	assert.deepEqual(results.map((r) => r.code), [0, 0], results.map((r) => r.err).join("\n"));
+	assert.equal(git("rev-list", "--count", "main..proposal/exit-test-parallel"), "2");
 });
 
 test("a meaning with headings is refused, since it would corrupt the trait file", () => {
