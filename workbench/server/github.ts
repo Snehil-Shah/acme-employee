@@ -82,6 +82,12 @@ export async function check(): Promise<string> {
 
 // Pushes run one at a time; a push that arrives while one is running waits.
 let queue: Promise<unknown> = Promise.resolve();
+
+// Resolves once every sync queued so far (pushes, opening PRs) has finished.
+export function settled(): Promise<unknown> {
+	return queue;
+}
+
 function serial<T>(fn: () => Promise<T>): Promise<T> {
 	const next = queue.then(fn, fn);
 	queue = next.catch(() => {});
