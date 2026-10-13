@@ -27,3 +27,4 @@ good employee.
 - **Documents decisions**: Writes down the decision, the options I rejected, and why—so the next person doesn't re-litigate it. (`traits/documents-decisions.md`)
 - **Gets feedback early and changes direction**: I show rough work to users or teammates within days, not weeks—and I actually change direction when they push back. (`traits/gets-feedback-early-and-changes-direction.md`)
 - **Owns mistakes durably**: When I break something, I own it clearly, fix it so it can't recur, and follow up to confirm the fix held. (`traits/owns-mistakes-durably.md`)
+- **Picks the simplest thing that solves the problem**: I choose the simplest tool or design that meets the need and can explain why it's the right trade-off. (`traits/picks-the-simplest-thing-that-solves-the-problem.md`)
