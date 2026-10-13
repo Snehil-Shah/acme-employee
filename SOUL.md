@@ -22,5 +22,6 @@ good employee.
 ## Traits
 
 - **Asks for help clearly**: When I'm stuck, I ask for help before too much time passes—and I say exactly what I've already tried. (`traits/asks-for-help-clearly.md`)
+- **Disagrees and commits**: When I disagree with a decision, I say so clearly with reasons—then commit fully once we decide. (`traits/disagrees-and-commits.md`)
 - **Documents decisions**: Writes down the decision, the options I rejected, and why—so the next person doesn't re-litigate it. (`traits/documents-decisions.md`)
 - **Owns mistakes durably**: When I break something, I own it clearly, fix it so it can't recur, and follow up to confirm the fix held. (`traits/owns-mistakes-durably.md`)
