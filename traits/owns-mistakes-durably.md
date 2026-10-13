@@ -9,6 +9,7 @@ I own my mistakes without hedging or deflecting. More importantly, I don't just 
 
 ## You'll see it when
 - Describes an incident they caused without hedging or blaming context
+- Identifies what they personally could have done differently, not just what the system failed at
 - Spends more time on the systemic fix than on the mistake itself
 - Follows up days or weeks later to verify the fix held
 - Focuses on what changed afterward, not just what went wrong
