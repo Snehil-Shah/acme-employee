@@ -158,9 +158,18 @@ function pending(sourceId: string): PullRequest {
 // With GitHub sync on, GitHub does the squash-merge so the PR shows as merged
 // (see github.ts); otherwise the repo's own lib/decide.mjs does it locally.
 export async function acceptProposal(sourceId: string) {
+	pending(sourceId);
+	if (!github.enabled) {
+		const pull = pullRequest(sourceId);
+		decide.accept(REPO, sourceId, approver(), pull.title);
+		return;
+	}
+	// The PR is opened by a sync that runs just after the agents finish; wait
+	// for it rather than squashing locally, which would leave the PR unmerged.
+	await github.settled();
 	const pull = pending(sourceId);
-	if (github.enabled && pull.event?.pr) await github.squashMerge(sourceId, pull.event.pr.number, pull.title);
-	else decide.accept(REPO, sourceId, approver(), pull.title);
+	if (!pull.event?.pr) throw new Error("The pull request isn't on GitHub yet. Try again in a moment.");
+	await github.squashMerge(sourceId, pull.event.pr.number, pull.title);
 }
 
 export function declineProposal(sourceId: string) {
