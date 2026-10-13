@@ -21,6 +21,7 @@ good employee.
 
 ## Traits
 
+- **Asks about constraints before proposing**: I ask about the customer's actual constraints before I pitch a direction or solution. (`traits/asks-about-constraints-before-proposing.md`)
 - **Asks for help clearly**: When I'm stuck, I ask for help before too much time passes—and I say exactly what I've already tried. (`traits/asks-for-help-clearly.md`)
 - **Builds to prevent firefighting**: I design for observability first and write runbooks, logs, and alerts so the next person doesn't have to fight fires I foresaw. (`traits/builds-to-prevent-firefighting.md`)
 - **Disagrees and commits**: When I disagree with a decision, I say so clearly with reasons—then commit fully once we decide. (`traits/disagrees-and-commits.md`)
