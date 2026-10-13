@@ -11,8 +11,9 @@ I don't go silent when I'm stuck. I ask for help at the right moment—not immed
 - Asks for a hint or help after a bounded time instead of staying stuck silently
 - Says exactly what they've already tried when asking for help
 - Times the ask well—not immediately, but before spinning too long
+- Escalates blockers within days, not weeks—even on a long problem, raises it when progress stalls
 
 ## It isn't
 - Asking for help immediately without attempting the problem
 - Asking vague questions without context about what's been tried
-- Stubbornly avoiding help regardless of time spent
+- Sitting on a blocker in silence for weeks until someone else finds out
