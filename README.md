@@ -2,7 +2,7 @@
 
 > A demo company running [the-employee](https://github.com/Snehil-Shah/the-employee). This repo *is* the agent, and its history is how Acme's idea of "great" took shape.
 
-Acme is fictional. Every hire, rejection and exit here comes from interviewers' written reviews, which a curator agent reads to propose how Acme's ideal employee should change. A fairness reviewer checks each proposal for demographic proxies, and a person decides what lands. Nothing in this repo names a candidate, an employee or an interviewer.
+Acme is fictional. Every hire, rejection and exit here comes from interviewers' written reviews, which a curator agent reads to propose how Acme's ideal employee should change. A fairness reviewer checks each proposal for demographic proxies, and a person decides what lands. The git history never names a candidate, an employee or an interviewer; the pull request titles show the name entered in the demo, and every name in the demo's examples is made up.
 
 It started from the template's first commit with no traits at all. Everything on `main` after that is a decision.
 
@@ -10,13 +10,15 @@ It started from the template's first commit with no traits at all. Everything on
 
 **The ideal, right now.** `main`. Each trait is a file in [`traits/`](traits/), and [`SOUL.md`](SOUL.md) lists them.
 
-**Why a trait is here.** Every accepted change is a commit authored by the curator and committed by whoever approved it, with the evidence in its trailers:
+**How it grew.** Each accepted hire, rejection or exit is one squashed commit on `main`, titled like `HIRED: Alice (Engineering Manager)`, so `git log --oneline main` is the ideal's timeline.
+
+**Why a trait is here.** Each decision's commit lists the changes it accepted and its `Source`. The curator's original commits, with each change's rationale in the message and the evidence in its trailers, are on that source's `proposal/<source>` branch:
 
 ```sh
-git log --format='%h %s%n  proposed by %an, approved by %cn%n%(trailers:key=Evidence)' -- traits/<slug>.md
+git log --format='%h %s%n%(trailers:key=Evidence)' proposal/<source>
 ```
 
-**What was proposed.** One `proposal/<source>` branch per hire, rejection or exit, with one commit per proposed change, and a pull request describing each change, its evidence and its fairness verdict. Changes that weren't accepted stay on their branch as the roads not taken.
+**What was proposed.** One `proposal/<source>` branch per hire, rejection or exit, with one commit per proposed change, and a pull request describing each change, its evidence and its fairness verdict. Accepting a proposal squash-merges its pull request; declined ones stay unmerged as the roads not taken.
 
 **Fairness verdicts and decisions.** These are git notes, which GitHub doesn't display. Fetch them to read them:
 
