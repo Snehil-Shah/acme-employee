@@ -1,77 +1,41 @@
-# The Employee
+# Acme's ideal employee
 
-> Ever-growing encapsulation of an employee at your company that learns with each hire/fire/rejection.
+> A demo company running [the-employee](https://github.com/Snehil-Shah/the-employee). This repo *is* the agent, and its history is how Acme's idea of "great" took shape.
 
-Every company has an idea of what "great" looks like. Usually it lives in a few people's heads and drifts without anyone noticing. `the-employee` turns your ideal employee into an agent you can talk to, one that is **learned, not written** from each HR decision you make.
+Acme is fictional. Every hire, rejection and exit here comes from interviewers' written reviews, which a curator agent reads to propose how Acme's ideal employee should change. A fairness reviewer checks each proposal for demographic proxies, and a person decides what lands. Nothing in this repo names a candidate, an employee or an interviewer.
 
-It can learn from written reviews from interviewers or AI-summaries of interviews (imagine integrations with tools like Kula AI, etc). As it is git-native in nature, you can do fun stuff like seeing what your ideal employee looked like before and after hiring Alice.
+It started from the template's first commit with no traits at all. Everything on `main` after that is a decision.
 
-This is a fully Git-native agent, built on [GitAgent](https://github.com/open-gitagent/gitagent), the reference runtime of the [Open Git Agent Protocol](https://github.com/open-gitagent/opengap).
+## Reading this repo
 
-**Who does what:**
+**The ideal, right now.** `main`. Each trait is a file in [`traits/`](traits/), and [`SOUL.md`](SOUL.md) lists them.
 
-- The **curator** drafts. It can read the ideal and commit to `proposal/*` branches, nothing else.
-- The **fairness reviewer** advises. It attaches a verdict to each proposal as a git note.
-- A **human** decides. Only `lib/decide.mjs` writes to `main`, and no agent has a tool that reaches it.
-
-## Adopting it
-
-This is a template repository. Create your company's copy with **Use this template** on GitHub, or from the command line:
+**Why a trait is here.** Every accepted change is a commit authored by the curator and committed by whoever approved it, with the evidence in its trailers:
 
 ```sh
-gh repo create <acme>/acme-employee --template <you>/the-employee --private --clone
-cd acme-employee
+git log --format='%h %s%n  proposed by %an, approved by %cn%n%(trailers:key=Evidence)' -- traits/<slug>.md
 ```
 
-Your copy starts with a single fresh commit and no traits, so its history is your company's alone: every commit after that is your ideal taking shape.
+**What was proposed.** One `proposal/<source>` branch per hire, rejection or exit, with one commit per proposed change, and a pull request describing each change, its evidence and its fairness verdict. Changes that weren't accepted stay on their branch as the roads not taken.
 
-Then:
-
-1. Add your company's non-negotiables below the base rules in `RULES.md`.
-2. Feed the curator interview loops and exit notes (format in `CONVENTIONS.md`).
-3. Review what it proposes and accept or decline each change with `bin/decide.mjs`.
-
-## Running it
-
-Requires Node 20+, git, and [GitAgent](https://github.com/open-gitagent/gitagent) (`npm install -g @open-gitagent/gitagent`). Set `ANTHROPIC_API_KEY`.
-
-**Talk to the ideal employee.** With no traits yet, it will tell you nobody has explored it.
+**Fairness verdicts and decisions.** These are git notes, which GitHub doesn't display. Fetch them to read them:
 
 ```sh
+git fetch origin 'refs/notes/*:refs/notes/*'
+git log --notes=fairness --notes=decisions proposal/<source>
+```
+
+## Talking to it
+
+Requires Node 20+, git, [GitAgent](https://github.com/open-gitagent/gitagent) (`npm install -g @open-gitagent/gitagent`) and `ANTHROPIC_API_KEY`.
+
+```sh
+git clone https://github.com/Snehil-Shah/acme-employee && cd acme-employee
 gitagent --dir . -p "It's 2am and production is down. What do you do?"
 ```
 
-**Curate a source.** Pass one interview loop's reviews (or one set of exit notes) in the format described in `CONVENTIONS.md`. The curator proposes up to three changes on the branch `proposal/<source_id>`.
+It answers from the traits on the commit you have checked out, so `git checkout <older commit>` lets you ask the ideal as it was.
 
-```sh
-gitagent --dir agents/curator -p "source_id: reject-2026-10-backend-07
-source_type: reject
-role: Backend Engineer
+## How it works
 
-Interviewer 1 (system design) — recommendation: no
-Picked Kafka without being able to say what problem it solved over a simple queue.
-
-Interviewer 2 (pairing) — recommendation: lean no
-Reached for the heaviest tool each time; couldn't articulate the trade-off when asked."
-```
-
-**Review it for fairness.** The reviewer attaches a verdict to each proposed commit as a git note.
-
-```sh
-gitagent --dir agents/fairness -p "Review proposal reject-2026-10-backend-07"
-```
-
-**Decide.** Look at the proposal, then accept the changes you agree with. Anything you don't accept stays on its branch as a road not taken.
-
-```sh
-git log main..proposal/reject-2026-10-backend-07 -p          # proposed changes, with evidence
-git log main..proposal/reject-2026-10-backend-07 --notes=fairness   # fairness verdicts
-bin/decide.mjs accept <commit>
-bin/decide.mjs revert <commit> "why"                          # undo an accepted change later
-```
-
-**Run the tests.** They exercise every tool, hook and decision against a throwaway copy of the repo, with no model or API key.
-
-```sh
-npm test
-```
+The curator, the fairness reviewer, their tools and the rules they follow come from the template; see [`CONVENTIONS.md`](CONVENTIONS.md) and [the-employee](https://github.com/Snehil-Shah/the-employee) for the details. `npm test` exercises every tool, hook and decision without a model or API key.
