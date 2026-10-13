@@ -27,6 +27,10 @@ git fetch origin 'refs/notes/*:refs/notes/*'
 git log --notes=fairness --notes=decisions proposal/<source>
 ```
 
+## The workbench
+
+[`workbench/`](workbench/) is the web app that drives this repo, live at **https://the-employee.fly.dev**: add a hire, rejection or exit, watch the agents work, and accept or decline each proposal. It runs the agents with GitAgent and mirrors everything here as a GitHub App, so every proposal is a pull request and every accepted one is squash-merged. See its [README](workbench/README.md).
+
 ## Talking to it
 
 Requires Node 20+, git, [GitAgent](https://github.com/open-gitagent/gitagent) (`npm install -g @open-gitagent/gitagent`) and `ANTHROPIC_API_KEY`.

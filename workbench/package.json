@@ -1,0 +1,26 @@
+{
+  "name": "employee-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A workbench for curating the-employee: add hires, rejections and exits, review what the agents propose, and watch the ideal grow.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@open-gitagent/gitagent": "^2.2.0",
+    "diff": "^7.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/diff": "^7.0.2",
+    "@types/node": "^22.20.5",
+    "@types/react": "18.3",
+    "@types/react-dom": "18.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "5.7",
+    "vite": "^6.4.4"
+  }
+}
